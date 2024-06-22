@@ -1,0 +1,8 @@
+.naviationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 40px;
+  text-align: center;
+  gap: 8px;
+}
