@@ -23,13 +23,9 @@ export type TInventoryData = {
 
 export default function InventoryTable() {
   const [inventoryList, setInventoryList] = useState<TInventoryData[]>([]);
-  const [currentItem, setCurrentItem] = useState<TInventoryData>(
-    inventoryList[0]
-  );
+  const [currentItem, setCurrentItem] = useState<TInventoryData | null>(null);
   const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
-  const [disabledRows, setDisabledRows] = useState<boolean[]>(
-    Array(inventoryList.length).fill(false)
-  );
+  const [disabledRows, setDisabledRows] = useState<boolean[]>([]);
 
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState<boolean>(false);
@@ -45,6 +41,7 @@ export default function InventoryTable() {
         );
         const result: TInventoryData[] = await response.json();
         setInventoryList(result);
+        setDisabledRows(Array(result.length).fill(false));
         setLoading(false);
       } catch (e) {
         console.error("Error while fetching data", e);
@@ -194,13 +191,15 @@ export default function InventoryTable() {
           ))}
         </TableBody>
       </Table>
-      <EditModal
-        open={open}
-        handleClose={() => setOpen(false)}
-        data={currentItem}
-        currentItemIndex={currentItemIndex}
-        updateInventoryList={handleUpdateInventoryList}
-      />
+      {currentItem && (
+        <EditModal
+          open={open}
+          handleClose={() => setOpen(false)}
+          data={currentItem}
+          currentItemIndex={currentItemIndex}
+          updateInventoryList={handleUpdateInventoryList}
+        />
+      )}
     </>
   ) : (
     <div className="loadingScreen">

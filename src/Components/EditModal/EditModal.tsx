@@ -1,7 +1,7 @@
 import Close from "@mui/icons-material/Close";
 import { TextField, Button, Typography, Modal, Box } from "@mui/material";
 import { TInventoryData } from "../Table/Table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./EditModal.style.css";
 
 const style = {
@@ -20,21 +20,28 @@ type TEditModal = {
   open: boolean;
   handleClose: () => void;
   data: TInventoryData;
-  currentItemIndex: number;
   updateInventoryList: (updatedItem: TInventoryData, index: number) => void;
+  currentItemIndex: number;
 };
 
 function EditModal({
   open,
   handleClose,
   data,
-  currentItemIndex,
   updateInventoryList,
+  currentItemIndex,
 }: TEditModal) {
-  const [category, setCategory] = useState(data?.category);
-  const [price, setPrice] = useState(parseFloat(data?.price?.replace("$", "")));
-  const [quantity, setQuantity] = useState(data?.quantity);
-  const [value, setValue] = useState(parseFloat(data?.value?.replace("$", "")));
+  const [category, setCategory] = useState(data.category);
+  const [price, setPrice] = useState(parseFloat(data.price.replace("$", "")));
+  const [quantity, setQuantity] = useState(data.quantity);
+  const [value, setValue] = useState(parseFloat(data.value.replace("$", "")));
+
+  useEffect(() => {
+    setCategory(data.category);
+    setPrice(parseFloat(data.price.replace("$", "")));
+    setQuantity(data.quantity);
+    setValue(parseFloat(data.value.replace("$", "")));
+  }, [data]);
 
   const handleOnSave = () => {
     const updatedItem = {
