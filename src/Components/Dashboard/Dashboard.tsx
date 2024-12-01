@@ -1,9 +1,9 @@
 import "./Dashboard.style.css";
 import {
-  ShoppingCart as ShoppingCartIcon,
-  RemoveShoppingCartOutlined,
   CurrencyExchangeOutlined,
-  CategoryOutlined,
+  CardMembership,
+  MoneyOff,
+  Share,
 } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 
@@ -30,26 +30,26 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="heading">Inventory stats</h1>
+      <h1 className="heading">ParshuRam Society Fund</h1>
       <div className="card-container">
         <Card
-          icon={ShoppingCartIcon}
-          text="Total Products"
+          icon={CardMembership}
+          text="Total Members"
           count={inventoryState.totalProducts}
         />
         <Card
           icon={CurrencyExchangeOutlined}
-          text="Total Store Value"
+          text="Total Fund Value"
           count={inventoryState.storeValue}
         />
         <Card
-          icon={RemoveShoppingCartOutlined}
-          text="Out of Stock"
+          icon={MoneyOff}
+          text="Total Loan Given"
           count={inventoryState.outOfStock}
         />
         <Card
-          icon={CategoryOutlined}
-          text="No of Category"
+          icon={Share}
+          text="Total Shared"
           count={inventoryState.NoOfCategory}
         />
       </div>

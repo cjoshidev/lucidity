@@ -31,33 +31,34 @@ function EditModal({
   updateInventoryList,
   currentItemIndex,
 }: TEditModal) {
-  const [category, setCategory] = useState(data.category);
-  const [price, setPrice] = useState(parseFloat(data.price.replace("$", "")));
-  const [quantity, setQuantity] = useState(data.quantity);
-  const [value, setValue] = useState(parseFloat(data.value.replace("$", "")));
+  // const [category, setCategory] = useState(data.category);
+  // const [price, setPrice] = useState(parseFloat(data.price.replace("$", "")));
+  // const [quantity, setQuantity] = useState(data.quantity);
+  // const [value, setValue] = useState(parseFloat(data.value.replace("$", "")));
 
-  useEffect(() => {
-    setCategory(data.category);
-    setPrice(parseFloat(data.price.replace("$", "")));
-    setQuantity(data.quantity);
-    setValue(parseFloat(data.value.replace("$", "")));
-  }, [data]);
+  // useEffect(() => {
+  //   setCategory(data.category);
+  //   setPrice(parseFloat(data.price.replace("$", "")));
+  //   setQuantity(data.quantity);
+  //   setValue(parseFloat(data.value.replace("$", "")));
+  // }, [data]);
 
-  const handleOnSave = () => {
-    const updatedItem = {
-      ...data,
-      category,
-      price: `$${price}`,
-      quantity,
-      value: `$${value}`,
-    };
-    updateInventoryList(updatedItem, currentItemIndex);
-    handleClose();
-  };
+  // const handleOnSave = () => {
+  //   const updatedItem = {
+  //     ...data,
+  //     category,
+  //     price: `$${price}`,
+  //     quantity,
+  //     value: `$${value}`,
+  //   };
+  //   updateInventoryList(updatedItem, currentItemIndex);
+  //   handleClose();
+  // };
 
   return (
     <div>
-      <Modal open={open} onClose={handleClose}>
+      <p>Test</p>
+      {/* <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <div className="container">
             <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -115,7 +116,7 @@ function EditModal({
             </div>
           </div>
         </Box>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
