@@ -49,7 +49,7 @@ export default function Dashboard() {
         />
         <Card
           icon={Share}
-          text="Total Shared"
+          text="Total Shares"
           count={inventoryState.NoOfCategory}
         />
       </div>
