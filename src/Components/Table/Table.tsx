@@ -4,13 +4,8 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useEffect, useState } from "react";
-import Edit from "@mui/icons-material/Edit";
-import RemoveRedEye from "@mui/icons-material/RemoveRedEye";
-import Delete from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
 import "./Table.style.css";
-import EditModal from "../EditModal/EditModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { UpdateInventoryState } from "../../../src/Actions/actions";
 
 export type TInventoryData = {
@@ -22,15 +17,10 @@ export type TInventoryData = {
 
 export default function InventoryTable() {
   const [inventoryList, setInventoryList] = useState<TInventoryData[]>([]);
-  const [currentItem, setCurrentItem] = useState<TInventoryData | null>(null);
-  const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
-  const [disabledRows, setDisabledRows] = useState<boolean[]>([]);
 
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const inventoryState = useSelector((state: any) => state.inventory);
 
   useEffect(() => {
     const fetchInventoryData = async () => {
@@ -127,15 +117,6 @@ export default function InventoryTable() {
   //   setDisabledRows(newDisabledRows);
   // };
 
-  const handleUpdateInventoryList = (
-    updatedItem: TInventoryData,
-    index: number
-  ) => {
-    const updatedList = [...inventoryList];
-    updatedList[index] = updatedItem;
-    setInventoryList(updatedList);
-  };
-
   return !loading ? (
     <>
       <Table className="inventory_table" aria-label="inventory_table">
@@ -151,10 +132,7 @@ export default function InventoryTable() {
         </TableHead>
         <TableBody>
           {inventoryList.map((item, index) => (
-            <TableRow
-              key={item.name}
-              className={disabledRows[index] ? "disabledRow" : ""}
-            >
+            <TableRow key={item.name}>
               <TableCell align="left">{item.name}</TableCell>
               <TableCell align="right">{item.share}</TableCell>
               <TableCell align="right">{item.totalDeposit}</TableCell>
